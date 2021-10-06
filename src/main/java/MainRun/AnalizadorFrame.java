@@ -54,6 +54,7 @@ public class AnalizadorFrame extends javax.swing.JFrame {
           setResizable(false);
 
           textIn.setColumns(20);
+          textIn.setLineWrap(true);
           textIn.setRows(5);
           jScrollPane2.setViewportView(textIn);
 
