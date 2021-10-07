@@ -6,6 +6,7 @@
 package MainRun;
 
 import Analizador.Analizador;
+import Files.FileDriver;
 import object.TokenBag;
 
 /**
@@ -14,6 +15,7 @@ import object.TokenBag;
  */
 public class AnalizadorFrame extends javax.swing.JFrame {
      TokenBag tokenBag = new TokenBag();
+     FileDriver fileDriver;
      Analizador analizador;
      
      /**
@@ -33,7 +35,6 @@ public class AnalizadorFrame extends javax.swing.JFrame {
      // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
      private void initComponents() {
 
-          jTabbedPane1 = new javax.swing.JTabbedPane();
           jPanel1 = new javax.swing.JPanel();
           jScrollPane2 = new javax.swing.JScrollPane();
           textIn = new javax.swing.JTextArea();
@@ -44,8 +45,7 @@ public class AnalizadorFrame extends javax.swing.JFrame {
           jButton4 = new javax.swing.JButton();
           jScrollPane1 = new javax.swing.JScrollPane();
           infoOut = new javax.swing.JTextArea();
-          jPanel2 = new javax.swing.JPanel();
-          jFileChooser1 = new javax.swing.JFileChooser();
+          cargaButton = new javax.swing.JButton();
 
           setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
           setTitle("Analizador Lexico");
@@ -89,6 +89,13 @@ public class AnalizadorFrame extends javax.swing.JFrame {
           infoOut.setRows(5);
           jScrollPane1.setViewportView(infoOut);
 
+          cargaButton.setText("Cargar");
+          cargaButton.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    cargaButtonActionPerformed(evt);
+               }
+          });
+
           javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
           jPanel1.setLayout(jPanel1Layout);
           jPanel1Layout.setHorizontalGroup(
@@ -99,6 +106,8 @@ public class AnalizadorFrame extends javax.swing.JFrame {
                          .addGroup(jPanel1Layout.createSequentialGroup()
                               .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                              .addComponent(cargaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                               .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                               .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,61 +134,34 @@ public class AnalizadorFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                          .addComponent(jButton4)
                          .addComponent(jButton3)
-                         .addComponent(jButton2))
+                         .addComponent(jButton2)
+                         .addComponent(cargaButton))
                     .addContainerGap())
           );
-
-          jTabbedPane1.addTab("Escribir ", jPanel1);
-
-          jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
-               public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jFileChooser1ActionPerformed(evt);
-               }
-          });
-
-          javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-          jPanel2.setLayout(jPanel2Layout);
-          jPanel2Layout.setHorizontalGroup(
-               jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
-                    .addContainerGap())
-          );
-          jPanel2Layout.setVerticalGroup(
-               jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(268, Short.MAX_VALUE))
-          );
-
-          jTabbedPane1.addTab("Abrir Archivo", jPanel2);
 
           javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
           getContentPane().setLayout(layout);
           layout.setHorizontalGroup(
                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jTabbedPane1)
+               .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 1, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 1, Short.MAX_VALUE))
           );
           layout.setVerticalGroup(
                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jTabbedPane1)
+               .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 13, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 13, Short.MAX_VALUE))
           );
 
           pack();
      }// </editor-fold>//GEN-END:initComponents
 
-     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
-          // TODO add your handling code here:
-     }//GEN-LAST:event_jFileChooser1ActionPerformed
-
-     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         
-          analizador = new Analizador(textIn.getText(), tokenBag);
-          tokensOut.setText(tokenBag.showTokens());
-          infoOut.setText(analizador.getData());
-     }//GEN-LAST:event_jButton2ActionPerformed
+     private void cargaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaButtonActionPerformed
+          fileDriver = new FileDriver(cargaButton, textIn);
+     }//GEN-LAST:event_cargaButtonActionPerformed
 
      private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
           System.exit(0);
@@ -192,22 +174,27 @@ public class AnalizadorFrame extends javax.swing.JFrame {
           tokenBag.clearArrays();
      }//GEN-LAST:event_jButton3ActionPerformed
 
+     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+          analizador = new Analizador(textIn.getText(), tokenBag);
+          tokensOut.setText(tokenBag.showTokens());
+          infoOut.setText(analizador.getData());
+     }//GEN-LAST:event_jButton2ActionPerformed
+
      /**
       * @param args the command line arguments
       */
 
      // Variables declaration - do not modify//GEN-BEGIN:variables
+     private javax.swing.JButton cargaButton;
      private javax.swing.JTextArea infoOut;
      private javax.swing.JButton jButton2;
      private javax.swing.JButton jButton3;
      private javax.swing.JButton jButton4;
-     private javax.swing.JFileChooser jFileChooser1;
      private javax.swing.JPanel jPanel1;
-     private javax.swing.JPanel jPanel2;
      private javax.swing.JScrollPane jScrollPane1;
      private javax.swing.JScrollPane jScrollPane2;
      private javax.swing.JScrollPane jScrollPane4;
-     private javax.swing.JTabbedPane jTabbedPane1;
      private javax.swing.JTextArea textIn;
      private javax.swing.JTextArea tokensOut;
      // End of variables declaration//GEN-END:variables

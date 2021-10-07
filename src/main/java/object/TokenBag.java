@@ -76,7 +76,7 @@ public class TokenBag {
                info += tmpDouble + "\n";
           }
            
-          info += "\n Los signos registrados son:";
+          info += "\n Los signos registrados son:\n";
           while (itSign.hasNext()) {
               String tmpString = itSign.next();
                info+= tmpString +"\n";

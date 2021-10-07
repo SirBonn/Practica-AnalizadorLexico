@@ -64,6 +64,7 @@ public class Analizador {
                     System.out.print("["+stateAuto[i][j] +"] ");
                }
           }
+          System.out.println("");
      }
 
      public Analizador(String inputText, TokenBag tokenBag) {
@@ -78,6 +79,7 @@ public class Analizador {
           for (int i = 0; i < this.separateInput.length; i++) {
                tmpChar = separateInput[i];
                columnCount++;
+               
                if (Character.isSpaceChar(tmpChar)) {
                     saveToken(token);
                     actualState = 0;
@@ -94,11 +96,9 @@ public class Analizador {
 
      private int nextState(int previousState, int typeChar) {
           int state = -1;
-
           if (typeChar >= 0 && typeChar <= 13) {
                state = stateAuto[previousState][typeChar];
           }
-
           return state;
      }
 
@@ -131,11 +131,12 @@ public class Analizador {
           } else if (symbol == '}') {
                System.out.println("se cerro una llave");
                type = 8;
+          } else if (symbol == '\n'){
+               System.out.println("salto de linea");
           } else {
                System.out.println("venia un signo");
                type = 9;
           }
-
           return type;
      }
 
@@ -148,12 +149,16 @@ public class Analizador {
           int tmpState = nextState(actualState, getTypeChar(symbol));
           previousState = actualState;
           actualState = tmpState;
-          System.out.println("Del estado " +previousState +" pasamos con " +symbol +" al estado " + actualState);
+          if (symbol != '\n') {
+               System.out.println("Del estado " +previousState +" pasamos con " +symbol +" al estado " + actualState);               
+          }
 
           if (actualState == -1) {
                System.out.println("hubo un error ");
-               data += "existe un error con el symbolo " + symbol + " en la linea " + row + " casila " + column+" donde antes se lee " +token +"\n";
-               wrongToken();
+               if(symbol!= '\n'){
+                    data += "existe un error con el symbolo " + symbol + " en la linea " + row + " casila " + column+" donde antes se lee " +token +"\n";   
+               }
+                wrongToken();
           } else {
                System.out.println(getToken(symbol));
           }
@@ -180,6 +185,5 @@ public class Analizador {
      
      public String getData() {
           return data + "\n";
-     }
-     
+     }   
 }
