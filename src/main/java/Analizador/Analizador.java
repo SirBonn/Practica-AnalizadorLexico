@@ -104,7 +104,7 @@ public class Analizador {
 
      private int getTypeChar(char symbol) {
           int type = -1;
-
+          
           if (Character.isLetter(symbol)) {
                type = 0;
           }

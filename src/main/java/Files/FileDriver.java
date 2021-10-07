@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -18,7 +19,10 @@ import javax.swing.JTextArea;
  */
 public class FileDriver {
 
-     public FileDriver(JButton readButton, JTextArea textArea) {
+     public FileDriver() {
+     }
+     
+     public void fileReader(JButton readButton, JTextArea textArea) {
           
           readButton.addActionListener(new ActionListener() {
 
@@ -41,6 +45,26 @@ public class FileDriver {
             }
         });
      }
+     
+     public void fileWritter(JButton exportButton, JTextArea textArea){
+     
+          exportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    JFileChooser file = new JFileChooser(System.getProperty("user.dir"));
+                    JOptionPane emergent = new JOptionPane();
+                    file.showSaveDialog(emergent);
+                    if (file.getSelectedFile() != null) {
+                        try (FileWriter fileSave = new FileWriter(file.getSelectedFile())) {
+                            fileSave.write(textArea.getText());
+                            JOptionPane.showMessageDialog(emergent, "el archivo se guardo correctamente");
+                        }
+                    }
+                } catch (IOException ex) {
+                }
+            }
 
-
+        });
+     }
 }

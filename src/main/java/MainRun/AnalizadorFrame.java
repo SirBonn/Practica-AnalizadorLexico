@@ -14,16 +14,18 @@ import object.TokenBag;
  * @author byron
  */
 public class AnalizadorFrame extends javax.swing.JFrame {
+
      TokenBag tokenBag = new TokenBag();
-     FileDriver fileDriver;
+     FileDriver fileDriver = new FileDriver();
      Analizador analizador;
-     
+
      /**
       * Creates new form AnalizadorFrame
       */
      public AnalizadorFrame() {
           initComponents();
           setLocationRelativeTo(null);
+           textIn.setText("");
      }
 
      /**
@@ -35,17 +37,18 @@ public class AnalizadorFrame extends javax.swing.JFrame {
      // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
      private void initComponents() {
 
-          jPanel1 = new javax.swing.JPanel();
+          mainPanel = new javax.swing.JPanel();
           jScrollPane2 = new javax.swing.JScrollPane();
           textIn = new javax.swing.JTextArea();
           jScrollPane4 = new javax.swing.JScrollPane();
           tokensOut = new javax.swing.JTextArea();
-          jButton2 = new javax.swing.JButton();
-          jButton3 = new javax.swing.JButton();
-          jButton4 = new javax.swing.JButton();
+          analyzerButton = new javax.swing.JButton();
+          cleanButton = new javax.swing.JButton();
+          exitBotton = new javax.swing.JButton();
           jScrollPane1 = new javax.swing.JScrollPane();
           infoOut = new javax.swing.JTextArea();
           cargaButton = new javax.swing.JButton();
+          exportButton = new javax.swing.JButton();
 
           setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
           setTitle("Analizador Lexico");
@@ -63,24 +66,24 @@ public class AnalizadorFrame extends javax.swing.JFrame {
           tokensOut.setRows(5);
           jScrollPane4.setViewportView(tokensOut);
 
-          jButton2.setText("Analizar");
-          jButton2.addActionListener(new java.awt.event.ActionListener() {
+          analyzerButton.setText("Analizar");
+          analyzerButton.addActionListener(new java.awt.event.ActionListener() {
                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton2ActionPerformed(evt);
+                    analyzerButtonActionPerformed(evt);
                }
           });
 
-          jButton3.setText("Limpiar");
-          jButton3.addActionListener(new java.awt.event.ActionListener() {
+          cleanButton.setText("Limpiar");
+          cleanButton.addActionListener(new java.awt.event.ActionListener() {
                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton3ActionPerformed(evt);
+                    cleanButtonActionPerformed(evt);
                }
           });
 
-          jButton4.setText("Salir");
-          jButton4.addActionListener(new java.awt.event.ActionListener() {
+          exitBotton.setText("Salir");
+          exitBotton.addActionListener(new java.awt.event.ActionListener() {
                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton4ActionPerformed(evt);
+                    exitBottonActionPerformed(evt);
                }
           });
 
@@ -96,46 +99,56 @@ public class AnalizadorFrame extends javax.swing.JFrame {
                }
           });
 
-          javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-          jPanel1.setLayout(jPanel1Layout);
-          jPanel1Layout.setHorizontalGroup(
-               jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel1Layout.createSequentialGroup()
+          exportButton.setText("Exportar");
+          exportButton.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    exportButtonActionPerformed(evt);
+               }
+          });
+
+          javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+          mainPanel.setLayout(mainPanelLayout);
+          mainPanelLayout.setHorizontalGroup(
+               mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                         .addGroup(jPanel1Layout.createSequentialGroup()
-                              .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                         .addGroup(mainPanelLayout.createSequentialGroup()
+                              .addComponent(exitBotton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                              .addComponent(exportButton)
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                               .addComponent(cargaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                              .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addComponent(cleanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                              .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addComponent(analyzerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addGap(11, 11, 11))
-                         .addGroup(jPanel1Layout.createSequentialGroup()
-                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                         .addGroup(mainPanelLayout.createSequentialGroup()
+                              .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                    .addComponent(jScrollPane1)
-                                   .addGroup(jPanel1Layout.createSequentialGroup()
+                                   .addGroup(mainPanelLayout.createSequentialGroup()
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
                               .addContainerGap(15, Short.MAX_VALUE))))
           );
-          jPanel1Layout.setVerticalGroup(
-               jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel1Layout.createSequentialGroup()
+          mainPanelLayout.setVerticalGroup(
+               mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                          .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                          .addComponent(jScrollPane4))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                         .addComponent(jButton4)
-                         .addComponent(jButton3)
-                         .addComponent(jButton2)
-                         .addComponent(cargaButton))
+                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                         .addComponent(exitBotton)
+                         .addComponent(cleanButton)
+                         .addComponent(analyzerButton)
+                         .addComponent(cargaButton)
+                         .addComponent(exportButton))
                     .addContainerGap())
           );
 
@@ -145,56 +158,67 @@ public class AnalizadorFrame extends javax.swing.JFrame {
                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(layout.createSequentialGroup()
                     .addGap(0, 1, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 1, Short.MAX_VALUE))
           );
           layout.setVerticalGroup(
                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(layout.createSequentialGroup()
                     .addGap(0, 13, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 13, Short.MAX_VALUE))
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
           );
 
           pack();
      }// </editor-fold>//GEN-END:initComponents
 
      private void cargaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaButtonActionPerformed
-          fileDriver = new FileDriver(cargaButton, textIn);
+          fileDriver.fileReader(cleanButton, textIn);
      }//GEN-LAST:event_cargaButtonActionPerformed
 
-     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+     private void exitBottonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBottonActionPerformed
           System.exit(0);
-     }//GEN-LAST:event_jButton4ActionPerformed
+     }//GEN-LAST:event_exitBottonActionPerformed
 
-     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+     private void cleanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanButtonActionPerformed
           textIn.setText("");
           tokensOut.setText("");
           infoOut.setText("");
           tokenBag.clearArrays();
-     }//GEN-LAST:event_jButton3ActionPerformed
+     }//GEN-LAST:event_cleanButtonActionPerformed
 
-     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     private void analyzerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyzerButtonActionPerformed
 
           analizador = new Analizador(textIn.getText(), tokenBag);
           tokensOut.setText(tokenBag.showTokens());
           infoOut.setText(analizador.getData());
-     }//GEN-LAST:event_jButton2ActionPerformed
+     }//GEN-LAST:event_analyzerButtonActionPerformed
+
+     private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportButtonActionPerformed
+          //if ("".equals(infoOut.getText())) {
+               fileDriver.fileWritter(exportButton, tokensOut);
+          //} else {
+            //   JOptionPane.showMessageDialog(null, "El no puede ser guardado porque tiene errores");
+
+          //}
+
+
+     }//GEN-LAST:event_exportButtonActionPerformed
 
      /**
       * @param args the command line arguments
       */
 
      // Variables declaration - do not modify//GEN-BEGIN:variables
+     private javax.swing.JButton analyzerButton;
      private javax.swing.JButton cargaButton;
+     private javax.swing.JButton cleanButton;
+     private javax.swing.JButton exitBotton;
+     private javax.swing.JButton exportButton;
      private javax.swing.JTextArea infoOut;
-     private javax.swing.JButton jButton2;
-     private javax.swing.JButton jButton3;
-     private javax.swing.JButton jButton4;
-     private javax.swing.JPanel jPanel1;
      private javax.swing.JScrollPane jScrollPane1;
      private javax.swing.JScrollPane jScrollPane2;
      private javax.swing.JScrollPane jScrollPane4;
+     private javax.swing.JPanel mainPanel;
      private javax.swing.JTextArea textIn;
      private javax.swing.JTextArea tokensOut;
      // End of variables declaration//GEN-END:variables
