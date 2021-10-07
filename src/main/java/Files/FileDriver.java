@@ -53,12 +53,12 @@ public class FileDriver {
             public void actionPerformed(ActionEvent e) {
                 try {
                     JFileChooser file = new JFileChooser(System.getProperty("user.dir"));
-                    JOptionPane emergent = new JOptionPane();
-                    file.showSaveDialog(emergent);
+                    JOptionPane jOptionPane = new JOptionPane();
+                    file.showSaveDialog(jOptionPane);
                     if (file.getSelectedFile() != null) {
                         try (FileWriter fileSave = new FileWriter(file.getSelectedFile())) {
                             fileSave.write(textArea.getText());
-                            JOptionPane.showMessageDialog(emergent, "el archivo se guardo correctamente");
+                            JOptionPane.showMessageDialog(jOptionPane, "el archivo se guardo correctamente");
                         }
                     }
                 } catch (IOException ex) {
