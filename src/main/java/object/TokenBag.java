@@ -17,11 +17,13 @@ public class TokenBag {
      private final ArrayList<String> stringTokens;
      private final ArrayList<Integer> integersTokens;
      private final ArrayList<Double> doublesTokens;
+     private final ArrayList<String> signArray;
 
      public TokenBag() {
           stringTokens = new ArrayList<>();
           integersTokens = new ArrayList<>();
           doublesTokens = new ArrayList<>();
+          signArray = new ArrayList<>();
      }
 
      public void saveToken(String tokenIn, int type) {
@@ -39,6 +41,9 @@ public class TokenBag {
                     doublesTokens.add(Double.parseDouble(tokenIn));
                     System.out.println("se guardo el double " + tokenIn);
                     break;
+               case 3:
+                    signArray.add(tokenIn);
+                    System.out.println("se guardo el signo" +tokenIn);
                default:
                     break;
           }
@@ -49,28 +54,32 @@ public class TokenBag {
           Iterator<String> itString = stringTokens.iterator();
           Iterator<Integer> itInt = integersTokens.iterator();
           Iterator<Double> itDouble = doublesTokens.iterator();
+          Iterator<String> itSign = signArray.iterator();
 
-          String tmpString;
           String info = "";
-          int tmpInt;
-          double tmpDouble;
 
           info = "Cadenas de texto validas: \n";
           while (itString.hasNext()) {
-               tmpString = itString.next();
+               String tmpString = itString.next();
                info += tmpString + "\n";
           }
-
+          
           info += "\nEnteros validos: \n";
           while (itInt.hasNext()) {
-               tmpInt = itInt.next();
+               int tmpInt = itInt.next();
                info += tmpInt + "\n";
           }
           
           info += "\nDecimales validos: \n";
            while (itDouble.hasNext()) {
-               tmpDouble = itDouble.next();
+              double tmpDouble = itDouble.next();
                info += tmpDouble + "\n";
+          }
+           
+          info += "\n Los signos registrados son:";
+          while (itSign.hasNext()) {
+              String tmpString = itSign.next();
+               info+= tmpString +"\n";
           }
            
            return info;
